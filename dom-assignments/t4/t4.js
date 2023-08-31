@@ -782,12 +782,12 @@ function laskeEtaisyys(x1, y1, x2, y2) {
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
-  maximumAge: 0
+  maximumAge: 0,
 };
 
 function error(err) {
-  console.warn(ERROR(${err.code}): ${err.message});
-};
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
 function success(pos) {
   const crd = pos.coords;
@@ -796,7 +796,7 @@ function success(pos) {
 
   //taulukon järjestäminen
 
-  restaurants.sort(function(a, b){
+  restaurants.sort(function (a, b) {
     const x2A = a.location.coordinates[1];
     const y2A = a.location.coordinates[0];
     const etaisyysA = laskeEtaisyys(x1, y1, x2A, y2A);
@@ -808,14 +808,27 @@ function success(pos) {
     console.log(etaisyysB);
 
     return etaisyysA - etaisyysB;
+  });
 
-  })
-
-  console.log(restaurants)
+  console.log(restaurants);
 
   // tulosta ravintolat html dokumenttiin
 }
 
+const restaurant = {name, address};
 
-navigator.geolocation.getCurrentPosition(success, error, options)
+for (const restaurant of restaurants) {
+  const td1 = document.createElement('td');
+  td1.innerText = restaurant.name;
 
+  const td2 = document.createElement('td');
+  td2.innerText = restaurant.address;
+
+  const tr = document.createElement('tr');
+  tr.append(td1);
+  tr.append(td2);
+
+  document.getElementById('kohde').append(tr);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
