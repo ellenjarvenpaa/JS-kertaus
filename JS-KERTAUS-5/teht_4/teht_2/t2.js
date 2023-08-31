@@ -1,13 +1,5 @@
 'use strict';
 
-/*async function postJson() {
-  const user = {
-    name: 'Siiri',
-    job: 'Web developer',
-  };
-  const url = 'https://reqres.in/api/users';
-}*/
-
 (async function () {
   const user = {
     name: 'Siiri',
@@ -22,7 +14,6 @@
       },
       body: JSON.stringify(user),
     });
-
     const responseData = await response.json();
     console.log(responseData);
   } catch (error) {
