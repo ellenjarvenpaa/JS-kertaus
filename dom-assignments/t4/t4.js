@@ -815,20 +815,4 @@ function success(pos) {
   // tulosta ravintolat html dokumenttiin
 }
 
-const restaurant = {name, address};
-
-for (const restaurant of restaurants) {
-  const td1 = document.createElement('td');
-  td1.innerText = restaurant.name;
-
-  const td2 = document.createElement('td');
-  td2.innerText = restaurant.address;
-
-  const tr = document.createElement('tr');
-  tr.append(td1);
-  tr.append(td2);
-
-  document.getElementById('kohde').append(tr);
-}
-
 navigator.geolocation.getCurrentPosition(success, error, options);
